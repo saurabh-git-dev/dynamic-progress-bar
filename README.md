@@ -24,9 +24,9 @@ Can be used in : Games, voting, Sometimes in place of chart etc.
 
 </div>
 
-script  src="dynamic-progress-bar.js"></script>
+<script  src="dynamic-progress-bar.js"></script>
 
-script  src="script.js"></script>
+<script  src="script.js"></script>
 ```
 
 #### script.js
