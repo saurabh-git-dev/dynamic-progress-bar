@@ -1,0 +1,181 @@
+.progress-bar-container {
+    position: relative;
+    width: 50%;
+    /* margin: auto; */
+    height: auto;
+    height: calc((var(--total-progress-bars) * (var(--progress-bar-height) + (var(--animate-cont-margin) * 2)) + 35) * 1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif, cursive, monospace;
+    margin: 2rem 6rem;
+}
+
+.grid-lines-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    grid-gap: 0px;
+}
+
+.grid-line {
+    position: relative;
+    flex: auto;
+    height: 100%;
+    border-right: 3px solid rgb(78, 78, 78);
+    transition: all 1s;
+}
+
+.grid-line span {
+    position: absolute;
+    bottom: -18px;
+    right: -23px;
+    font-size: 13px;
+    color: rgb(78, 78, 78);
+    transition: all 1s;
+}
+
+.grid-line::after,
+.grid-line::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--circle-color);
+    top: -1px;
+    right: -7px;
+    transition: all 1s;
+    font-family: inherit;
+}
+
+.grid-line::after {
+    bottom: -1px;
+    top: unset;
+}
+
+.grid-line:last-child,
+.grid-line:last-child {
+    z-index: 5;
+    right: 10px;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 35px);
+    position: relative;
+    transition: all 0.5s ease-in-out;
+}
+
+.progress-container .animate-cont {
+    width: 100%;
+    top: calc(((var(--order) - 1) * (var(--progress-bar-height) + var(--animate-cont-margin) * 2)) * 1px);
+    margin: calc(var(--animate-cont-margin) * 1px);
+    position: absolute;
+    transition: all 0.7s ease-in-out;
+}
+
+
+
+
+.progress-container .progress-bar {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: calc(var(--progress-bar-height) * 1px);
+    min-height: 3px;
+    max-height: 30px;
+    background: rgb(231, 231, 231);
+    border-radius: 15px;
+    position: relative;
+}
+
+.progress-bar .progress {
+    position: relative;
+    left: 0;
+    width: calc((var(--data-percentage)) * 1%);
+    height: calc(100% - var(--progress-bar-gap) * 2px);
+    background: var(--progress-bar-color);
+    text-align: end;
+    transition: all 0.5s;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: calc(var(--progress-bar-gap) * 1px);
+    border-radius: 15px;
+}
+
+.progress-bar .progress::before {
+    content: attr(label);
+    position: absolute;
+    font-size: x-large;
+    font-weight: bold;
+    transition: all 0.5s;
+    right: -15px;
+    z-index: 8;
+}
+
+.progress-bar .progress::after {
+    content: attr(totalTime);
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    transition: all 0.5s;
+    left: calc(100% + 25px);
+    font-family: inherit;
+}
+
+.progress-bar .bar-name {
+    position: absolute;
+    left: -95px;
+    width: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: var(--align);
+    color: var(--bar-name-color);
+    font-family: inherit;
+}
+
+.progress-bar .progress .bar-animation {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar .progress .bar-animation::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    background: #e2dddd;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    animation: bar-animation 2s  ease-in-out infinite;
+    animation-timing-function: cubic-bezier(.3,.84,.53,.94);
+}
+
+@keyframes bar-animation {
+    0% {
+        width: 0%;
+        opacity: 0.3;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+}
