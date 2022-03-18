@@ -6,7 +6,9 @@ This progress bars is desgined for interactive, live progress for showing the pr
 Can be used in : Games, voting, Sometimes in place of chart etc.
 
 
-![Example Video](attachments/example.gif)
+<p align="center">
+   <img src="attachments/example.gif" alt="Example GIF"/>
+</p>
 
 
 ## Usage/Examples
