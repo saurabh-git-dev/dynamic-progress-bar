@@ -63,7 +63,7 @@ Can be used in : Games, voting, Sometimes in place of chart etc.
 
 ## Videos
 
-![Example Video](attachments/example_video.mp4)
+![Example Video](attachments/example.mp4)
 
 
 ## Authors
