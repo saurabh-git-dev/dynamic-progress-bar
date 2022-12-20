@@ -179,3 +179,13 @@
         opacity: 0;
     }
 }
+
+
+.progress-bar .progress .bar_step_label {
+    position: absolute;
+    left: calc((var(--step-label-position) * 1%) - 16px);
+    text-align: center;
+    font-size: var(--step-label-font-size);
+    color: var(--step-label-color);
+    font-family: inherit;
+}

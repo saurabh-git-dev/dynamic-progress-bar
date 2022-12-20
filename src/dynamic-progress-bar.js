@@ -39,7 +39,7 @@ class Progress {
 
     createProgressBar() {
         const parent = document.getElementById(this.id)
-        
+
         let progress_bar_container = document.createElement('div');
         progress_bar_container.classList.add('progress-bar-container');
         progress_bar_container.setAttribute('id', '$$' + this.id);
@@ -122,6 +122,12 @@ class Progress {
 
             let bar_animation = document.createElement('div');
             bar_animation.classList.add('bar-animation');
+
+
+            // pending
+
+
+
             bar.appendChild(bar_animation);
 
             progressBar.appendChild(bar);
@@ -163,7 +169,7 @@ class Progress {
             const parent = document.getElementById(this.id);
             const resize_observe = new ResizeObserver(Progress.runObserver);
             resize_observe.observe(parent)
-            __observers__.push({"id":this.id, "observer":resize_observe});
+            __observers__.push({ "id": this.id, "observer": resize_observe });
             this.options.observer.__observer__ = resize_observe;
             parent.setAttribute('__oveserver_enabled__', 'true');
             // console.log(this.options.observer);
@@ -268,6 +274,26 @@ class Progress {
 
             _bar_order.children[0].children[0].setAttribute('label', bar.label);
             _bar_order.children[0].children[0].setAttribute('totalTime', this.options.bar.rightLabelText(bar, this.barDetails.barsList, this.options.grid.totalLines));
+            // console.log()
+
+            let bar_animation = _bar_order.children[0].children[0].children[0]
+            // step labels/ time labels/ percentage labels
+            const steps = ['02:00', '05:29', '4', 5, 7, 7]
+            // only show lables after the start postion
+            if (bar.progress > 1) {
+                console.log(bar.progress)
+                // dont show labels for the last bar step label
+                let last = steps.length >= bar.progress ? bar.progress - 1 : steps.length;
+                for (let j = 0; j < last; j++) {
+                    let step_label = document.createElement('div');
+                    step_label.classList.add('bar_step_label');
+                    step_label.innerHTML = steps[j] || ''
+                    // let scaled_value = 100 / bar.bar_percentage * ((j + 1) / this.options.grid.totalLines * 100)
+                    let scaled_value = 100 * (j + 1) / bar.progress
+                    step_label.setAttribute('style', `--step-label-position: ${scaled_value};--step-label-color:${this.options.bar.stepLabel.color};--step-label-font-size:${this.options.bar.stepLabel.fontSize}`);
+                    bar_animation.appendChild(step_label);
+                }
+            }
         });
     }
 
@@ -458,7 +484,7 @@ class Progress {
 default_config = {
     observer: {
         status: true,
-        __observer__:null
+        __observer__: null
     },
     barContainer: {
         margin: {
@@ -511,6 +537,11 @@ default_config = {
         },
 
         rightLabelText: (currentBar, barsList, totalSteps) => ((currentBar.progress / totalSteps) * 100) + "%",
+
+        stepLabel: {
+            color: '#fff',
+            fontSize: '12px',
+        }
     },
 
 }
